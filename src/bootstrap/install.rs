@@ -93,7 +93,7 @@ fn install_sh(
     let libdir = prefix.join(libdir);
     let mandir = prefix.join(mandir);
 
-    let destdir = env::var_os("DESTDIR").map(PathBuf::from);
+    let destdir = env::var_os("RUST_DESTDIR").or_else(|| env::var_os("DESTDIR")).map(PathBuf::from);
 
     let prefix = add_destdir(&prefix, &destdir);
     let sysconfdir = add_destdir(&sysconfdir, &destdir);
