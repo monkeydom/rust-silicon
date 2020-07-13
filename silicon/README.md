@@ -26,8 +26,8 @@ hasn't been tested yet.
 1. Build our bootstrapping compiler
 
     ```
-    SDKROOT=/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.0.sdk \
-    MACOSX_DEPLOYMENT_TARGET=11.0 \
+    SDKROOT=$(xcrun -sdk macosx11.0 --show-sdk-path) \
+    MACOSX_DEPLOYMENT_TARGET=$(xcrun -sdk macosx11.0 --show-sdk-platform-version) \
     ../../x.py build -i --stage 1 \
     src/libstd
     ```
@@ -48,8 +48,8 @@ build a compiler native to the DTK.
 1. Cross-compile the compiler
 
     ```
-    SDKROOT=/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.0.sdk \
-    MACOSX_DEPLOYMENT_TARGET=11.0 \
+    SDKROOT=$(xcrun -sdk macosx11.0 --show-sdk-path) \
+    MACOSX_DEPLOYMENT_TARGET=$(xcrun -sdk macosx11.0 --show-sdk-platform-version) \
     RUST_DESTDIR=/tmp/crossed \
     ../../x.py install -i --stage 1 --host aarch64-apple-darwin --target aarch64-apple-darwin,x86_64-apple-darwin \
     src/librustc src/libstd cargo
